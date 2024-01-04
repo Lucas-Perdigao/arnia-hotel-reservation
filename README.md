@@ -51,5 +51,3 @@ Usuario {
 6. **Cancelamento de Reserva:**
    - Os usuários podem cancelar uma reserva existente antes da data de entrada.
    - O sistema atualiza o status da reserva e disponibiliza os quartos cancelados novamente para reservas futuras.
-
-Este sistema simplificado permite que os usuários encontrem hotéis, façam reservas e gerenciem suas reservas de forma mais fácil. Removemos funcionalidades complexas, como tipos de quarto e detalhes do hotel, para tornar o sistema mais acessível para desenvolvedores juniores.

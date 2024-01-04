@@ -1,6 +1,6 @@
 import { IUserRepository } from "../repository/user-repository-interface";
 
-class UserService {
+export class UserService {
     constructor(private userRepository: IUserRepository){}
 
     async getAll(){
@@ -24,6 +24,6 @@ class UserService {
     }
 
     async softDelete(){
-        
+
     }
 }

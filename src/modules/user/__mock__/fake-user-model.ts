@@ -1,5 +1,5 @@
 import { Model } from "mongoose"
-import { User } from "../model/user-model"
+import { User, UserModel } from "../model/user-model"
 
 export const fakeUserModel = {
     find: jest.fn().mockImplementationOnce(() => fakeUsersArray),

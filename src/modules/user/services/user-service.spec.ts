@@ -29,4 +29,52 @@ describe('UserService', ()=> {
             await expect(userService.getByEmail('batata@potato.com')).rejects.toThrow('User not found.')
         })
     })
+
+    describe('getById', () => {
+        it('Should return an user', async () => {
+            const user = await userService.getById(fakeUser.id)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if no user is found', async () => {
+            jest.spyOn(fakeUserRepository, 'getById').mockResolvedValueOnce(null)
+            await expect(userService.getById('50')).rejects.toThrow('User not found.')
+        })
+    })
+    
+    describe('create', () => {
+        it('Should return an user', async () => {
+            const user = await userService.create(fakeUser)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if not able to create user', async () => {
+            jest.spyOn(fakeUserRepository, 'create').mockResolvedValueOnce(null)
+            await expect(userService.create(fakeUser)).rejects.toThrow('Cannot create user.')
+        })
+    })
+
+    describe('update', () => {
+        it('Should return an user', async  () => {
+            const user = await userService.update(fakeUser.id, fakeUser)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if not able to update user', async () => {
+            jest.spyOn(fakeUserRepository, 'update').mockResolvedValueOnce(null)
+            await expect(userService.update(fakeUser.id, fakeUser)).rejects.toThrow('Cannot update user.')
+        })
+    })
+
+    describe('softDelete', () => {
+        it('Should return an user', async () => {
+            const user = await userService.softDelete(fakeUser.id)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if not able to delete user', async () => {
+            jest.spyOn(fakeUserRepository, 'softDelete').mockResolvedValueOnce(null)
+            await expect(userService.softDelete(fakeUser.id)).rejects.toThrow('Cannot delete user.')
+        })
+    })
 })

@@ -73,7 +73,7 @@ export class UserService implements IUserService{
         const deletedUser = await this.userRepository.softDelete(id)
 
         if(!deletedUser){
-            throw new Error("Cannot update user.")
+            throw new Error("Cannot delete user.")
         }
 
         return deletedUser

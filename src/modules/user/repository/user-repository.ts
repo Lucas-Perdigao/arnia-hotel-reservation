@@ -18,7 +18,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async getById(id: string): Promise<User | null>{
-        if(isValidObjectId(id)){
+        if(!isValidObjectId(id)){
             throw new Error(`Id ${id} is not valid.`)
         }
 
@@ -32,7 +32,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async update(id: string, newUserData: UpdateUserDTO): Promise<User | null>{
-        if(isValidObjectId(id)){
+        if(!isValidObjectId(id)){
             throw new Error(`Id ${id} is not valid.`)
         }
 
@@ -41,7 +41,7 @@ export class UserRepository implements IUserRepository {
     }
 
     async softDelete(id: string): Promise<User | null>{
-        if(isValidObjectId(id)){
+        if(!isValidObjectId(id)){
             throw new Error(`Id ${id} is not valid.`)
         }
 

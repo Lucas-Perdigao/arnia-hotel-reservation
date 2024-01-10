@@ -1,4 +1,7 @@
+import { fakeObjectId } from "../../../__mock__/fake-object-id";
 import { fakeUser, fakeUserModel, fakeUsersArray } from "../__mock__/fake-user-model";
+import { fakeUserRepository } from "../__mock__/fake-user-repository";
+import { UserService } from "../services/user-service";
 import { UserRepository } from "./user-repository";
 
 const userRepository = new UserRepository(fakeUserModel)

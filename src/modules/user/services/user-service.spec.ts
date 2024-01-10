@@ -32,7 +32,7 @@ describe('UserService', ()=> {
 
     describe('getById', () => {
         it('Should return an user', async () => {
-            const user = await userService.getById(fakeUser.id)
+            const user = await userService.getById(fakeUser._id)
             expect(user).toEqual(fakeUser)
         })
 
@@ -56,25 +56,25 @@ describe('UserService', ()=> {
 
     describe('update', () => {
         it('Should return an user', async  () => {
-            const user = await userService.update(fakeUser.id, fakeUser)
+            const user = await userService.update(fakeUser._id, fakeUser)
             expect(user).toEqual(fakeUser)
         })
 
         it('Should return an error if not able to update user', async () => {
             jest.spyOn(fakeUserRepository, 'update').mockResolvedValueOnce(null)
-            await expect(userService.update(fakeUser.id, fakeUser)).rejects.toThrow('Cannot update user.')
+            await expect(userService.update(fakeUser._id, fakeUser)).rejects.toThrow('Cannot update user.')
         })
     })
 
     describe('softDelete', () => {
         it('Should return an user', async () => {
-            const user = await userService.softDelete(fakeUser.id)
+            const user = await userService.softDelete(fakeUser._id)
             expect(user).toEqual(fakeUser)
         })
 
         it('Should return an error if not able to delete user', async () => {
             jest.spyOn(fakeUserRepository, 'softDelete').mockResolvedValueOnce(null)
-            await expect(userService.softDelete(fakeUser.id)).rejects.toThrow('Cannot delete user.')
+            await expect(userService.softDelete(fakeUser._id)).rejects.toThrow('Cannot delete user.')
         })
     })
 })

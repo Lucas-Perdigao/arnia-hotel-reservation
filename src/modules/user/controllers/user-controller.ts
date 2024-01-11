@@ -14,6 +14,7 @@ export class UserController implements IUserController{
             res.status(500).json(error)
         }
     }
+
     async getByEmail(req: Request, res: Response): Promise<void>{
         try {
             const { email } = req.query

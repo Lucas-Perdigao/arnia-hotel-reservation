@@ -1,4 +1,3 @@
-import { fakeObjectId } from "../../../__mock__/fake-object-id";
 import { fakeUser, fakeUserModel, fakeUsersArray } from "../__mock__/fake-user-model";
 import { fakeUserRepository } from "../__mock__/fake-user-repository";
 import { UserService } from "../services/user-service";
@@ -25,4 +24,48 @@ describe('UserRepository', () => {
             expect(user).toEqual(fakeUser)
         })
     })
+
+    describe('getById', () => {
+        it('Should return a user with the same id passed as argument', async () => {
+            const user = await userRepository.getById(fakeUser._id)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if the id is not valid', async () => {
+            await expect(userRepository.getById('1')).rejects.toThrow(`Id 1 is not valid.`)
+        })
+    })
+
+    describe('create', () => {
+        it('Should return an user', async () => {
+            const user = await userRepository.create(fakeUser)
+            expect(user).toEqual(fakeUser)
+        })
+    })
+
+    describe('update', () => {
+        it('Should return an user', async () => {
+            const user = await userRepository.update(fakeUser._id, fakeUser)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if the id is not valid', async () => {
+            await expect(userRepository.update('1', fakeUser)).rejects.toThrow(`Id 1 is not valid.`)
+        })
+    })
+
+    describe('softDelete', () => {
+        it('Should return an user', async () => {
+            const user = await userRepository.softDelete(fakeUser._id)
+            expect(user).toEqual(fakeUser)
+        })
+
+        it('Should return an error if the id is not valid', async () => {
+            await expect(userRepository.softDelete('1')).rejects.toThrow(`Id 1 is not valid.`)
+        })
+    })
+
 })
+
+// toEqual compara os valores do mesmo endereço de memória de objetos e arrays
+// toBe para comparar outros tipos primitivos (string, number, boolean etc)

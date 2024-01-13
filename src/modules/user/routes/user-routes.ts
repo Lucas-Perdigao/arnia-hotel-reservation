@@ -8,7 +8,7 @@ userRoutes.get('/user', userModule.getAll.bind(userModule))
 
 userRoutes.get('/user/:id', userModule.getById.bind(userModule))
 
-userRoutes.get('/user', userModule.getByEmail.bind(userModule))
+userRoutes.get('/user/find', userModule.getByEmail.bind(userModule))
 
 userRoutes.post('/user', userModule.create.bind(userModule))
 

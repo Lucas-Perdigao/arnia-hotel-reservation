@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { IUserService } from "../services/user-service-interface";
-import { createUserValidator } from "../../utils/create-user-validator";
+import { createUserValidator } from "../utils/create-user-validator";
 import { IUserController } from "./user-controller-interface";
 
 export class UserController implements IUserController{
@@ -24,6 +24,18 @@ export class UserController implements IUserController{
             res.status(500).json(error)
         }
     }
+
+    // async getByFilter(req: Request, res: Response): Promise<void>{
+    //     try {
+    //         const filters = req.query
+    //         //Validação de filtros aqui -- YUP
+    //         const user = await this.userService.getByFilter(filters)
+    //         res.status(200).json(user)
+    //     } catch (error: any) {
+    //         res.status(500).json(error)
+    //     }
+    // }
+
     async getById(req: Request, res: Response): Promise<void>{
         try {
             const { id } = req.params
@@ -33,6 +45,7 @@ export class UserController implements IUserController{
             res.status(500).json(error)
         }
     }
+
     async create(req: Request, res: Response): Promise<void>{
         try {
             const { body } = req
@@ -44,6 +57,7 @@ export class UserController implements IUserController{
             res.status(500).json(error)
         }
     }
+    
     async update(req: Request, res: Response): Promise<void>{
         try {
             const { id } = req.params

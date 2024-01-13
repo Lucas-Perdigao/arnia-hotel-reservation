@@ -27,6 +27,16 @@ export class UserService implements IUserService{
         return user
     }
 
+    // async getByFilter(filter): Promise<User>{
+    //     const user = await this.userRepository.getByFilter(filter)
+
+    //     if(!user){
+    //         throw new Error('User not found.')
+    //     }
+
+    //     return user
+    // }
+
     async getById(id: string): Promise<User>{
         const user = await this.userRepository.getById(id)
 

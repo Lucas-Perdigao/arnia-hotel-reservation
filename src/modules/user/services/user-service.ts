@@ -3,6 +3,7 @@ import { UpdateUserDTO } from "../dtos/update-user-dto";
 import { User } from "../model/user-model";
 import { IUserRepository } from "../repository/user-repository-interface";
 import { IUserService } from "./user-service-interface";
+import bcrypt from 'bcrypt'
 
 export class UserService implements IUserService{
     constructor(private userRepository: IUserRepository){}
@@ -27,16 +28,6 @@ export class UserService implements IUserService{
         return user
     }
 
-    // async getByFilter(filter): Promise<User>{
-    //     const user = await this.userRepository.getByFilter(filter)
-
-    //     if(!user){
-    //         throw new Error('User not found.')
-    //     }
-
-    //     return user
-    // }
-
     async getById(id: string): Promise<User>{
         const user = await this.userRepository.getById(id)
 
@@ -46,8 +37,9 @@ export class UserService implements IUserService{
 
         return user
     }
-
+    
     async create(userData: CreateUserDTO): Promise<User>{
+        userData.password = await bcrypt.hash(userData.password, 10)
         const newUser = await this.userRepository.create(userData)
 
         if(!newUser){

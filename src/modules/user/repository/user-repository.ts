@@ -8,33 +8,17 @@ export class UserRepository implements IUserRepository {
     constructor(private userModel: Model<User>){}
 
     async getAll(): Promise<User[]>{
-        const users = await this.userModel.find({deletedAt: null})
+        const users = await this.userModel.find({deletedAt: null}).populate('reservations')
         return users
     }
 
     async getByEmail(email: string): Promise<User | null>{
         const user = await this.userModel.findOne(
-            {email: email, deletedAt: null})
+            {email: email, deletedAt: null}).populate('reservations')
         return user
     }
 
-    // async getByFilter(filter): Promise<User | null>{
-    // //         /**
-    // //          * {
-    // //          *  destiny: 'Cidade do México',
-    // //          *  startDate: '10-11-2024',
-    // //          *  endDate: '15-11-2024'
-    // //          * }
-    // //          */
-    //     const user = await this.userModel.find({...filter, deletedAt: null})
-    //     return user
-    // }
-
     async getById(id: string): Promise<User | null>{
-        if(!isValidObjectId(id)){
-            throw new Error(`Id ${id} is not valid.`)
-        }
-
         const user = await this.userModel.findOne({_id: id, deletedAt: null})
         return user
     }
